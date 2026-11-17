@@ -242,7 +242,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
-        <div id="headerNavDropdown" class="hidden absolute top-full right-0 mt-2 w-64 max-w-[90vw] max-h-[82vh] overflow-y-auto bg-white rounded-2xl border border-slate-200 shadow-xl py-2.5 px-1.5 z-50 animate-fadeIn">
+        <div id="headerNavDropdown" class="hidden fixed top-14 right-3 sm:absolute sm:top-full sm:right-0 sm:mt-2 w-64 max-w-[calc(100vw-1.5rem)] max-h-[82vh] overflow-y-auto bg-white rounded-2xl border border-slate-200 shadow-xl py-2.5 px-1.5 z-50 animate-fadeIn">
           <button type="button" data-tab="dashboard" id="nav-mobile-dashboard" class="mobile-nav-btn w-full px-4 py-2.5 text-right text-xs text-emerald-700 font-bold flex items-center gap-2.5 hover:bg-slate-50">
             <span>الرئيسية</span>
           </button>
@@ -301,7 +301,7 @@
             <span id="currentScreenLabel">لوحة التحكم</span>
             <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </button>
-          <div id="currentScreenDropdownMenu" class="hidden absolute top-full left-0 mt-2 w-56 max-w-[90vw] max-h-[82vh] overflow-y-auto bg-white rounded-2xl border border-slate-200 shadow-xl py-2 px-1.5 z-50 animate-fadeIn text-right">
+          <div id="currentScreenDropdownMenu" class="hidden fixed top-14 right-3 sm:absolute sm:top-full sm:left-0 sm:right-auto sm:mt-2 w-64 max-w-[calc(100vw-1.5rem)] max-h-[82vh] overflow-y-auto bg-white rounded-2xl border border-slate-200 shadow-xl py-2.5 px-1.5 z-50 animate-fadeIn text-right">
             <button type="button" data-tab="dashboard" class="mobile-nav-btn w-full px-4 py-2 text-right text-xs text-slate-700 hover:bg-slate-50 flex items-center justify-between"><span>لوحة التحكم</span></button>
             <button type="button" data-tab="beneficiaries" class="mobile-nav-btn w-full px-4 py-2 text-right text-xs text-slate-700 hover:bg-slate-50 flex items-center justify-between"><span>المسجلين</span></button>
             <button type="button" data-tab="aid" class="mobile-nav-btn w-full px-4 py-2 text-right text-xs text-slate-700 hover:bg-slate-50 flex items-center justify-between"><span>المساعدات</span></button>
@@ -2908,41 +2908,62 @@
               fullName: u.full_name, role: u.role, isActive: u.is_active !== false, createdAt: u.created_at || ''
             }));
           }
-          if (bRes.data) state.beneficiaries = bRes.data.map(mapBeneficiaryFromDb);
-          if (aRes.data) state.aidRecords = aRes.data.map(r => ({
-            id: r.id, nationalId: r.national_id, beneficiaryName: r.beneficiary_name, type: r.type,
-            date: r.date, aidName: r.aid_name || '', templateId: r.template_id || '', description: r.description || '',
-            amount: r.amount || '', staff: r.staff || '', donorId: r.donor_id || '', notes: r.notes || '',
-            sheetImgs: Array.isArray(r.sheet_imgs) ? r.sheet_imgs : []
-          }));
-          if (wRes.data) state.workshops = wRes.data.map(w => ({
-            id: w.id, title: w.title, trainer: w.trainer, date: w.date, location: w.location || '',
-            donorId: w.donor_id || '', attendeeCount: w.attendee_count || 0,
-            attendeeIds: Array.isArray(w.attendee_ids) ? w.attendee_ids : [],
-            attendanceImg: w.attendance_img || null, photoImg: w.photo_img || null,
-            photos: Array.isArray(w.photos) ? w.photos : []
-          }));
-          if (nRes.data) state.needyFamilies = nRes.data.map(n => ({
-            nationalId: n.national_id, difficultyLevel: n.difficulty_level || '',
-            addedDate: n.added_date || '', photos: Array.isArray(n.photos) ? n.photos : []
-          }));
-          if (dRes.data) state.donors = dRes.data.map(d => ({
-            id: d.id, name: d.name, type: d.type || '', phone: d.phone || '',
-            address: d.address || '', notes: d.notes || '', photos: Array.isArray(d.photos) ? d.photos : []
-          }));
-          if (tRes.data) state.aidTemplates = tRes.data;
-          if (trRes.data) state.trainers = trRes.data;
-          if (pRes.data) state.pendingRequests = pRes.data.map(p => ({
-            id: p.id, requestType: p.request_type, nationalId: p.national_id,
-            oldData: p.old_data || null, newData: p.new_data || {},
-            submittedById: p.submitted_by_id, submittedByName: p.submitted_by_name,
-            submittedAt: p.submitted_at, status: p.status,
-            reviewedByName: p.reviewed_by_name || '', reviewedAt: p.reviewed_at || '', reviewNote: p.review_note || ''
-          }));
-          if (auRes.data) state.auditLogs = auRes.data.map(l => ({
-            id: l.id, actionType: l.action_type, entityType: l.entity_type, entityId: l.entity_id,
-            summary: l.summary, actorId: l.actor_id, actorName: l.actor_name, actorRole: l.actor_role, createdAt: l.created_at
-          }));
+          // حماية البيانات المحلية: عدم استبدال البيانات المحلية ببيانات فارغة من السحابة، ورفعها للسحابة إذا كانت السحابة فارغة
+          if (Array.isArray(bRes.data) && bRes.data.length > 0) {
+            state.beneficiaries = bRes.data.map(mapBeneficiaryFromDb);
+          } else if (Array.isArray(bRes.data) && bRes.data.length === 0 && state.beneficiaries.length > 0 && state.role === 'admin') {
+            await batchUpsertToCloud('beneficiaries', state.beneficiaries.map(mapBeneficiaryToDb), 'national_id', 'المسجلين');
+          }
+
+          if (Array.isArray(aRes.data) && aRes.data.length > 0) {
+            state.aidRecords = aRes.data.map(r => ({
+              id: r.id, nationalId: r.national_id, beneficiaryName: r.beneficiary_name, beneficiaryPhone: r.beneficiary_phone || '', type: r.type,
+              date: r.date, aidName: r.aid_name || '', templateId: r.template_id || '', description: r.description || '',
+              amount: r.amount || '', staff: r.staff || '', donorId: r.donor_id || '', notes: r.notes || '',
+              sheetImgs: Array.isArray(r.sheet_imgs) ? r.sheet_imgs : []
+            }));
+          } else if (Array.isArray(aRes.data) && aRes.data.length === 0 && state.aidRecords.length > 0 && state.role === 'admin') {
+            await batchUpsertToCloud('aid_records', state.aidRecords.map(r => ({ id: r.id, national_id: r.nationalId, beneficiary_name: r.beneficiaryName, type: r.type, date: r.date, aid_name: r.aidName, template_id: r.templateId, description: r.description, amount: r.amount, staff: r.staff, donor_id: r.donorId, notes: r.notes, sheet_imgs: r.sheetImgs || [] })), 'id', 'المساعدات');
+          }
+
+          if (Array.isArray(wRes.data) && wRes.data.length > 0) {
+            state.workshops = wRes.data.map(w => ({
+              id: w.id, title: w.title, trainer: w.trainer, date: w.date, location: w.location || '',
+              donorId: w.donor_id || '', attendeeCount: w.attendee_count || 0,
+              attendeeIds: Array.isArray(w.attendee_ids) ? w.attendee_ids : [],
+              attendanceImg: w.attendance_img || null, photoImg: w.photo_img || null,
+              photos: Array.isArray(w.photos) ? w.photos : []
+            }));
+          }
+          if (Array.isArray(nRes.data) && nRes.data.length > 0) {
+            state.needyFamilies = nRes.data.map(n => ({
+              nationalId: n.national_id, difficultyLevel: n.difficulty_level || '',
+              addedDate: n.added_date || '', photos: Array.isArray(n.photos) ? n.photos : []
+            }));
+          }
+          if (Array.isArray(dRes.data) && dRes.data.length > 0) {
+            state.donors = dRes.data.map(d => ({
+              id: d.id, name: d.name, type: d.type || '', phone: d.phone || '',
+              address: d.address || '', notes: d.notes || '', photos: Array.isArray(d.photos) ? d.photos : []
+            }));
+          }
+          if (Array.isArray(tRes.data) && tRes.data.length > 0) state.aidTemplates = tRes.data;
+          if (Array.isArray(trRes.data) && trRes.data.length > 0) state.trainers = trRes.data;
+          if (Array.isArray(pRes.data) && pRes.data.length > 0) {
+            state.pendingRequests = pRes.data.map(p => ({
+              id: p.id, requestType: p.request_type, nationalId: p.national_id,
+              oldData: p.old_data || null, newData: p.new_data || {},
+              submittedById: p.submitted_by_id, submittedByName: p.submitted_by_name,
+              submittedAt: p.submitted_at, status: p.status,
+              reviewedByName: p.reviewed_by_name || '', reviewedAt: p.reviewed_at || '', reviewNote: p.review_note || ''
+            }));
+          }
+          if (Array.isArray(auRes.data) && auRes.data.length > 0) {
+            state.auditLogs = auRes.data.map(l => ({
+              id: l.id, actionType: l.action_type, entityType: l.entity_type, entityId: l.entity_id,
+              summary: l.summary, actorId: l.actor_id, actorName: l.actor_name, actorRole: l.actor_role, createdAt: l.created_at
+            }));
+          }
           if (sRes.data) {
             const lkRow = sRes.data.find(x => x.key === 'custom_lookups');
             if (lkRow && lkRow.value) state.customLookups = lkRow.value;
@@ -3058,6 +3079,55 @@
 
       function syncRecordToCloud(table, record, pkField = 'id') {
         enqueueTableSync(table, 'upsert', record, pkField, record[pkField]);
+      }
+
+      async function batchUpsertToCloud(table, rows, pkField = 'id', label = '') {
+        if (!Array.isArray(rows) || rows.length === 0) return { ok: true, count: 0 };
+        const CHUNK_SIZE = 100;
+        let uploaded = 0;
+        let failed = false;
+        let lastErr = null;
+
+        if (navigator.onLine && sbClient) {
+          for (let i = 0; i < rows.length; i += CHUNK_SIZE) {
+            const chunk = rows.slice(i, i + CHUNK_SIZE);
+            try {
+              const { error } = await sbClient.from(table).upsert(chunk, { onConflict: pkField });
+              if (!error) {
+                uploaded += chunk.length;
+                if (rows.length > CHUNK_SIZE) {
+                  showToast(`جاري رفع ${label || 'البيانات'} للسحابة (${toEnDigits(String(uploaded))}/${toEnDigits(String(rows.length))})...`);
+                }
+              } else {
+                failed = true;
+                lastErr = error.message || 'فشل الرفع للسحابة';
+                for (const row of chunk) {
+                  await idbAddToQueue({ op: 'upsert', table, payload: row, pkField, ts: Date.now() });
+                }
+              }
+            } catch (e) {
+              failed = true;
+              lastErr = (e && e.message) ? e.message : 'تعذر الاتصال بالسحابة';
+              for (const row of chunk) {
+                await idbAddToQueue({ op: 'upsert', table, payload: row, pkField, ts: Date.now() });
+              }
+            }
+          }
+          await refreshSyncQueueCount();
+          if (!failed) {
+            showToast(`تم رفع ${toEnDigits(String(uploaded))} سجل (${label || table}) إلى السحابة بنجاح`);
+            return { ok: true, count: uploaded, error: null };
+          }
+          showToast(`تم حفظ البيانات محلياً وتعذر رفع بعضها للسحابة: ${lastErr}`, false);
+          return { ok: false, count: uploaded, error: lastErr };
+        } else {
+          for (const row of rows) {
+            await idbAddToQueue({ op: 'upsert', table, payload: row, pkField, ts: Date.now() });
+          }
+          await refreshSyncQueueCount();
+          showToast(`تمت جدولة ${toEnDigits(String(rows.length))} سجل في قائمة الانتظار للرفع عند توفر الإنترنت`);
+          return { ok: false, count: 0, error: 'offline' };
+        }
       }
 
       function deleteRecordFromCloud(table, pkField, pkValue) {
@@ -4955,12 +5025,15 @@
       function applyPickerExcelRows(parsedRows) {
         if (!parsedRows.length) { showToast('لم يتم العثور على أرقام هوية صالحة', false); return; }
         let linked = 0, added = 0;
+        const benPayloads = [];
         parsedRows.forEach(row => {
-          const { status } = upsertBeneficiaryFromRow(row, state.pickerTarget === 'workshop' ? 'تمت إضافته عبر كشف ورشة عمل' : 'تمت إضافته عبر كشف مساعدة');
+          const { target, status } = upsertBeneficiaryFromRow(row, state.pickerTarget === 'workshop' ? 'تمت إضافته عبر كشف ورشة عمل' : 'تمت إضافته عبر كشف مساعدة');
           if (status === 'added') added++; else linked++;
+          if (status === 'added' || status === 'updated') benPayloads.push(mapBeneficiaryToDb(target));
           state.pickerTempSet.add(row.nationalId);
         });
         persistAll();
+        if (benPayloads.length) batchUpsertToCloud('beneficiaries', benPayloads, 'national_id', 'المسجلين');
         renderPickerTable();
         renderBeneficiaries();
         renderDashboard();
@@ -5306,18 +5379,25 @@
       function executeBulkImport() {
         if (!state.parsedBulkRows.length) return;
         let addedBen = 0, updatedBen = 0, addedAid = 0;
+        const benPayloads = [];
+        const aidPayloads = [];
         const aidType = document.getElementById('bulkAidType').value || '', defaultDesc = document.getElementById('bulkAidDesc').value.trim(), aidDate = document.getElementById('bulkAidDate').value || '', aidStaff = document.getElementById('bulkAidStaff').value.trim();
         state.parsedBulkRows.forEach((row, i) => {
           const { target, status } = upsertBeneficiaryFromRow(row);
           if (status === 'added') addedBen++; if (status === 'updated') updatedBen++;
+          if (status === 'added' || status === 'updated') benPayloads.push(mapBeneficiaryToDb(target));
           if (state.bulkImportMode === 'aid_sheet') {
-            state.aidRecords.push({ id: `AID-BULK-${Date.now()}-${i}`, nationalId: target.nationalId, beneficiaryName: target.fullName, beneficiaryPhone: toEnDigits(target.phone || ''), type: aidType, date: aidDate, description: row.customAidDesc || defaultDesc, amount: '', staff: aidStaff, notes: row.notes || '' });
+            const aidObj = { id: `AID-BULK-${Date.now()}-${i}`, nationalId: target.nationalId, beneficiaryName: target.fullName, beneficiaryPhone: toEnDigits(target.phone || ''), type: aidType, date: aidDate, description: row.customAidDesc || defaultDesc, amount: '', staff: aidStaff, notes: row.notes || '' };
+            state.aidRecords.push(aidObj);
+            aidPayloads.push({ id: aidObj.id, national_id: aidObj.nationalId, beneficiary_name: aidObj.beneficiaryName, type: aidObj.type, date: aidObj.date, aid_name: '', template_id: '', description: aidObj.description, amount: aidObj.amount, staff: aidObj.staff, donor_id: '', notes: aidObj.notes, sheet_imgs: [] });
             addedAid++;
           }
         });
         persistAll(); closeModal('bulkImportModal'); renderBeneficiaries(); renderAidView(); renderDashboard(); runAdvancedReport();
         showToast(`تم الاستيراد: إضافة ${addedBen}، تحديث ${updatedBen}، وتسجيل ${addedAid} مساعدة.`);
         switchTab(state.bulkImportMode === 'aid_sheet' ? 'aid' : 'beneficiaries');
+        if (benPayloads.length) batchUpsertToCloud('beneficiaries', benPayloads, 'national_id', 'المسجلين');
+        if (aidPayloads.length) batchUpsertToCloud('aid_records', aidPayloads, 'id', 'المساعدات');
       }
 
       function triggerDownload(blob, filename) {
