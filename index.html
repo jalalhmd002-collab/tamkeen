@@ -253,7 +253,7 @@
             <span>المساعدات</span>
           </button>
           <button type="button" data-tab="workshops" id="nav-mobile-workshops" class="mobile-nav-btn w-full px-4 py-2.5 text-right text-xs text-slate-600 flex items-center gap-2.5 hover:bg-slate-50">
-            <span>ندوات/ورش عمل</span>
+            <span>التدريب</span>
           </button>
           <button type="button" data-tab="needy" id="nav-mobile-needy" class="mobile-nav-btn w-full px-4 py-2.5 text-right text-xs text-slate-600 flex items-center gap-2.5 hover:bg-slate-50">
             <span>الحالات</span>
@@ -263,8 +263,12 @@
           </button>
           <div class="my-1 border-t border-slate-200"></div>
           <button type="button" data-tab="approvals" id="nav-mobile-approvals" class="admin-only mobile-nav-btn w-full px-4 py-2.5 text-right text-xs text-amber-700 flex items-center justify-between hover:bg-slate-50">
-            <span>الطلبات والتقارير</span>
+            <span>الطلبات</span>
             <span id="mobileMenuPendingBadge" class="hidden px-2 py-0.5 rounded-full border border-amber-400 text-amber-800 text-[10px] num-en">0</span>
+          </button>
+          <button type="button" data-tab="reports" id="nav-mobile-reports" class="admin-only mobile-nav-btn w-full px-4 py-2.5 text-right text-xs text-indigo-700 flex items-center gap-2 hover:bg-slate-50">
+            <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+            <span>التقارير</span>
           </button>
           <button type="button" data-tab="my-requests" id="nav-mobile-my-requests" class="employee-only hidden mobile-nav-btn w-full px-4 py-2.5 text-right text-xs text-sky-700 flex items-center justify-between hover:bg-slate-50">
             <span>طلباتي المعلقة</span>
@@ -296,27 +300,7 @@
       </div>
 
       <div class="flex items-center gap-2 shrink-0">
-        <div class="relative shrink-0">
-          <button type="button" id="currentScreenDropdownBtn" aria-expanded="false" aria-controls="currentScreenDropdownMenu" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs border border-sky-200 bg-sky-50 text-sky-800 hover:bg-sky-100 transition cursor-pointer">
-            <span id="currentScreenLabel">لوحة التحكم</span>
-            <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-          </button>
-          <div id="currentScreenDropdownMenu" class="hidden fixed top-14 right-3 sm:absolute sm:top-full sm:left-0 sm:right-auto sm:mt-2 w-64 max-w-[calc(100vw-1.5rem)] max-h-[82vh] overflow-y-auto bg-white rounded-2xl border border-slate-200 shadow-xl py-2.5 px-1.5 z-50 animate-fadeIn text-right">
-            <button type="button" data-tab="dashboard" class="mobile-nav-btn w-full px-4 py-2 text-right text-xs text-slate-700 hover:bg-slate-50 flex items-center justify-between"><span>لوحة التحكم</span></button>
-            <button type="button" data-tab="beneficiaries" class="mobile-nav-btn w-full px-4 py-2 text-right text-xs text-slate-700 hover:bg-slate-50 flex items-center justify-between"><span>المسجلين</span></button>
-            <button type="button" data-tab="aid" class="mobile-nav-btn w-full px-4 py-2 text-right text-xs text-slate-700 hover:bg-slate-50 flex items-center justify-between"><span>المساعدات</span></button>
-            <button type="button" data-tab="workshops" class="mobile-nav-btn w-full px-4 py-2 text-right text-xs text-slate-700 hover:bg-slate-50 flex items-center justify-between"><span>ندوات/ورش عمل</span></button>
-            <button type="button" data-tab="needy" class="mobile-nav-btn w-full px-4 py-2 text-right text-xs text-slate-700 hover:bg-slate-50 flex items-center justify-between"><span>الحالات</span></button>
-            <button type="button" data-tab="donors" class="mobile-nav-btn w-full px-4 py-2 text-right text-xs text-slate-700 hover:bg-slate-50 flex items-center justify-between"><span>المانحين</span></button>
-            <div class="my-1 border-t border-slate-200"></div>
-            <button type="button" data-tab="approvals" class="admin-only mobile-nav-btn w-full px-4 py-2 text-right text-xs text-amber-700 hover:bg-slate-50 flex items-center justify-between"><span>الطلبات والتقارير</span><span id="screenMenuPendingBadge" class="hidden text-[10px] num-en text-amber-800">0</span></button>
-            <button type="button" data-tab="my-requests" class="employee-only hidden mobile-nav-btn w-full px-4 py-2 text-right text-xs text-sky-700 hover:bg-slate-50 flex items-center justify-between"><span>طلباتي المعلقة</span></button>
-            <button type="button" data-tab="users" class="admin-only mobile-nav-btn w-full px-4 py-2 text-right text-xs text-indigo-700 hover:bg-slate-50 flex items-center justify-between"><span>إدارة المستخدمين</span></button>
-            <button type="button" data-tab="audit" class="admin-only mobile-nav-btn w-full px-4 py-2 text-right text-xs text-rose-700 hover:bg-slate-50 flex items-center justify-between"><span>سجل الرقابة</span></button>
-            <button type="button" data-tab="sync" class="admin-only mobile-nav-btn w-full px-4 py-2 text-right text-xs text-violet-700 hover:bg-slate-50 flex items-center justify-between"><span>النسخ الاحتياطي والمزامنة</span></button>
-            <button type="button" data-tab="addons" class="admin-only mobile-nav-btn w-full px-4 py-2 text-right text-xs text-indigo-700 hover:bg-slate-50 flex items-center justify-between"><span>الملحقات والإضافات</span></button>
-          </div>
-        </div>
+
         <button type="button" id="syncStatusIndicator" title="حالة الاتصال والمزامنة - اضغط للمزامنة اليدوية" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] border border-slate-200 text-slate-700 cursor-pointer shrink-0">
           <span id="syncStatusDot" class="w-2 h-2 rounded-full bg-emerald-500 shrink-0"></span>
           <span id="syncStatusText" class="num-en">متصل</span>
@@ -344,7 +328,7 @@
       </button>
       <button type="button" data-tab="workshops" id="nav-desktop-workshops" class="nav-btn px-2.5 lg:px-3 py-2.5 text-xs lg:text-sm font-medium border-b-2 border-transparent text-slate-600 hover:text-slate-900 flex items-center gap-1.5 whitespace-nowrap shrink-0">
         <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
-        <span>ندوات/ورش عمل</span>
+        <span>التدريب</span>
       </button>
       <button type="button" data-tab="needy" id="nav-desktop-needy" class="nav-btn px-2.5 lg:px-3 py-2.5 text-xs lg:text-sm font-medium border-b-2 border-transparent text-slate-600 hover:text-slate-900 flex items-center gap-1.5 whitespace-nowrap shrink-0">
         <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
@@ -355,8 +339,12 @@
         <span>المانحين</span>
       </button>
       <button type="button" data-tab="approvals" id="nav-desktop-approvals" class="admin-only nav-btn px-3 py-2.5 text-xs lg:text-sm font-medium border-b-2 border-transparent text-amber-700 hover:text-amber-900 flex items-center gap-1.5 whitespace-nowrap shrink-0">
-        <span>الطلبات والتقارير</span>
+        <span>الطلبات</span>
         <span id="desktopPendingBadge" class="hidden px-1.5 py-0.5 rounded-full border border-amber-400 text-amber-800 text-[10px] num-en">0</span>
+      </button>
+      <button type="button" data-tab="reports" id="nav-desktop-reports" class="admin-only nav-btn px-3 py-2.5 text-xs lg:text-sm font-medium border-b-2 border-transparent text-indigo-700 hover:text-indigo-900 flex items-center gap-1.5 whitespace-nowrap shrink-0">
+        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+        <span>التقارير</span>
       </button>
       <button type="button" data-tab="audit" id="nav-desktop-audit" class="admin-only nav-btn px-3 py-2.5 text-xs lg:text-sm font-medium border-b-2 border-transparent text-rose-700 hover:text-rose-900 flex items-center gap-1.5 whitespace-nowrap shrink-0">
         <span>سجل الرقابة</span>
@@ -410,7 +398,7 @@
 
         <div class="bg-white/90 backdrop-blur-sm p-3.5 sm:p-4 rounded-2xl border border-slate-200/80 border-t-4 border-t-amber-500 shadow-sm flex items-center justify-between">
           <div>
-            <p class="text-xs font-semibold text-slate-500">ندوات/ورش عمل المنفذة</p>
+            <p class="text-xs font-semibold text-slate-500">برامج التدريب المنفذة</p>
             <h3 id="statTotalWorkshops" class="text-2xl font-black text-amber-700 mt-1 num-en">0</h3>
             <span class="text-[11px] text-amber-600 font-medium">مع كشوفات مصورة</span>
           </div>
@@ -442,13 +430,17 @@
 
         <div class="bg-white/90 backdrop-blur-sm p-4 rounded-2xl border border-slate-200/80 shadow-sm">
           <div class="flex items-center justify-between mb-3">
-            <h4 class="font-bold text-slate-800 text-sm sm:text-base flex items-center"><span class="w-2.5 h-2.5 rounded-full bg-amber-500 ml-2"></span>أحدث ندوات/ورش عمل والتدريب</h4>
+            <h4 class="font-bold text-slate-800 text-sm sm:text-base flex items-center"><span class="w-2.5 h-2.5 rounded-full bg-amber-500 ml-2"></span>أحدث برامج التدريب</h4>
             <button type="button" data-tab="workshops" class="text-xs text-amber-600 hover:text-amber-800 font-semibold">عرض الكل</button>
           </div>
           <div id="recentWorkshopsList" class="space-y-2"></div>
         </div>
       </div>
 
+    </section>
+
+    <!-- TAB: REPORTS (STANDALONE) -->
+    <section id="tab-reports" class="tab-content hidden space-y-4">
       <!-- INTEGRATED REPORTS SECTION -->
       <div id="integratedReportsAnchor" class="pt-2 space-y-4">
       <div class="bg-white/90 backdrop-blur-sm p-4 rounded-2xl border border-slate-200/80 border-t-4 border-t-indigo-500 shadow-sm space-y-4 no-print">
@@ -628,6 +620,7 @@
         </div>
       </div>
     
+
       </div>
     </section>
 
@@ -737,7 +730,7 @@
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white/90 backdrop-blur-sm p-4 rounded-2xl border border-slate-200/80 border-t-4 border-t-sky-500 shadow-sm">
         <div>
           <h2 class="text-base sm:text-lg font-black text-slate-900">سجل المساعدات</h2>
-          <p class="text-xs text-slate-500">توثيق المساعدات النقدية والعينية، وإدارة المستفيدين بنفس نسق ندوات/ورش عمل</p>
+          <p class="text-xs text-slate-500">توثيق المساعدات النقدية والعينية، وإدارة المستفيدين بنفس نسق التدريب</p>
         </div>
         <div class="flex flex-wrap items-center gap-2">
           <button type="button" data-action="open-aid-modal" class="admin-only app-btn border border-sky-500 text-sky-700 hover:border-sky-600 shadow-sm">+ تسجيل تسليم مساعدة</button>
@@ -796,7 +789,7 @@
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white/90 backdrop-blur-sm p-4 rounded-2xl border border-slate-200/80 border-t-4 border-t-amber-500 shadow-sm">
         <div>
           <h2 class="text-base sm:text-lg font-black text-slate-900">التدريب والتمكين المجتمعي</h2>
-          <p class="text-xs text-slate-500">توثيق ندوات/ورش عمل، وإدارة المشاركين عبر بطاقة مخصصة مع استيراد وتصدير Excel</p>
+          <p class="text-xs text-slate-500">توثيق التدريب، وإدارة المشاركين عبر بطاقة مخصصة مع استيراد وتصدير Excel</p>
         </div>
         <div class="flex flex-wrap items-center gap-2">
           <button type="button" data-action="open-workshop-modal" class="admin-only app-btn border border-amber-500 text-amber-700 hover:border-amber-600 shadow-sm">+ إضافة ورشة عمل</button>
@@ -1183,8 +1176,11 @@
       <div class="bg-white/90 backdrop-blur-sm p-4 rounded-2xl border border-slate-200/80 border-t-4 border-t-amber-500 shadow-sm space-y-3">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <h2 class="text-base sm:text-lg text-slate-900">الطلبات والتقارير</h2>
+            <h2 class="text-base sm:text-lg text-slate-900">الطلبات</h2>
             <p class="text-xs text-slate-500">مراجعة طلبات الموظفين بانتظار الموافقة، ومتابعة حركات اليوم وتعديلات المديرين بشكل مستقل</p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2 shrink-0">
+            <button type="button" id="printApprovalsBtn" class="admin-only app-btn border border-slate-300 text-slate-700">طباعة</button>
           </div>
         </div>
         <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-200/80">
@@ -1277,6 +1273,9 @@
         <div>
           <h2 class="text-base sm:text-lg text-slate-900">سجل الرقابة وتتبّع التغييرات (Audit Log)</h2>
           <p class="text-xs text-slate-500">توثيق جميع الحركات (إضافة، تعديل، حذف، اعتماد طلب) باسم منفذها والتوقيت الدقيق</p>
+        </div>
+        <div class="flex flex-wrap items-center gap-2 shrink-0">
+          <button type="button" id="printAuditBtn" class="admin-only app-btn border border-slate-300 text-slate-700">طباعة</button>
         </div>
       </div>
       <div class="bg-white/90 p-3.5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col sm:flex-row sm:items-center gap-2.5 text-xs">
@@ -1892,7 +1891,7 @@
         </div>
 
         <div>
-          <h4 class="font-bold text-slate-800 mb-2">ندوات/ورش عمل والدورات</h4>
+          <h4 class="font-bold text-slate-800 mb-2">التدريب والدورات</h4>
           <div class="border border-slate-200 rounded-xl overflow-hidden prof-subtable-wrap">
             <table id="profWsTable" class="w-full text-right text-xs">
               <thead class="bg-slate-50 font-bold text-slate-600 border-b border-slate-200"><tr><th class="p-2">التاريخ</th><th class="p-2">اسم الدورة</th><th class="p-2">المدرب</th></tr></thead>
@@ -2217,7 +2216,7 @@
           <div id="donorViewNoAidsMsg" class="hidden text-center text-slate-400 py-2 text-xs">لا توجد مساعدات مرتبطة بهذا المانح بعد.</div>
         </div>
         <div class="space-y-2 pt-2">
-          <h4 class="text-slate-800">ندوات/ورش عمل المرتبطة بهذا المانح:</h4>
+          <h4 class="text-slate-800">التدريب المرتبطة بهذا المانح:</h4>
           <div id="donorViewWsWrap" class="overflow-x-auto rounded-xl border border-slate-200">
             <table class="w-full text-right text-xs">
               <thead class="text-slate-600 border-b border-slate-200">
@@ -2430,6 +2429,7 @@
         addons: { headerBorder: 'border-t-indigo-600', iconBg: 'bg-indigo-50 text-indigo-700 border-indigo-200/80', desktopActive: 'border-indigo-600 text-indigo-700', mobileText: 'text-indigo-700' },
         sync: { headerBorder: 'border-t-violet-600', iconBg: 'bg-violet-50 text-violet-700 border-violet-200/80', desktopActive: 'border-violet-600 text-violet-700', mobileText: 'text-violet-700' },
         approvals: { headerBorder: 'border-t-amber-600', iconBg: 'bg-amber-50 text-amber-700 border-amber-200/80', desktopActive: 'border-amber-600 text-amber-700', mobileText: 'text-amber-700' },
+        reports: { headerBorder: 'border-t-indigo-600', iconBg: 'bg-indigo-50 text-indigo-700 border-indigo-200/80', desktopActive: 'border-indigo-600 text-indigo-700', mobileText: 'text-indigo-700' },
         'my-requests': { headerBorder: 'border-t-sky-600', iconBg: 'bg-sky-50 text-sky-700 border-sky-200/80', desktopActive: 'border-sky-600 text-sky-700', mobileText: 'text-sky-700' },
         users: { headerBorder: 'border-t-indigo-600', iconBg: 'bg-indigo-50 text-indigo-700 border-indigo-200/80', desktopActive: 'border-indigo-600 text-indigo-700', mobileText: 'text-indigo-700' },
         audit: { headerBorder: 'border-t-rose-600', iconBg: 'bg-rose-50 text-rose-700 border-rose-200/80', desktopActive: 'border-rose-600 text-rose-700', mobileText: 'text-rose-700' }
@@ -2940,6 +2940,8 @@
               nationalId: n.national_id, difficultyLevel: n.difficulty_level || '',
               addedDate: n.added_date || '', photos: Array.isArray(n.photos) ? n.photos : []
             }));
+          } else if (Array.isArray(nRes.data) && nRes.data.length === 0 && state.needyFamilies.length > 0 && state.role === 'admin') {
+            await batchUpsertToCloud('needy_families', state.needyFamilies.map(n => ({ national_id: n.nationalId, difficulty_level: n.difficultyLevel || '', added_date: n.addedDate || todayISO(), photos: n.photos || [] })), 'national_id', 'الحالات');
           }
           if (Array.isArray(dRes.data) && dRes.data.length > 0) {
             state.donors = dRes.data.map(d => ({
@@ -3255,12 +3257,13 @@
         dashboard: 'لوحة التحكم',
         beneficiaries: 'المسجلين',
         aid: 'المساعدات',
-        workshops: 'ندوات/ورش عمل',
+        workshops: 'التدريب',
         needy: 'الحالات',
         donors: 'المانحين',
         sync: 'النسخ الاحتياطي والمزامنة',
         addons: 'الملحقات والإضافات',
-        approvals: 'الطلبات والتقارير',
+        approvals: 'الطلبات',
+        reports: 'التقارير',
         'my-requests': 'طلباتي المعلقة',
         users: 'إدارة المستخدمين والصلاحيات',
         audit: 'سجل الرقابة (Audit Log)'
@@ -3268,8 +3271,7 @@
 
       function switchTab(tabId) {
         state.currentTab = tabId;
-        const screenLbl = document.getElementById('currentScreenLabel');
-        if (screenLbl) screenLbl.textContent = TAB_TITLES[tabId] || 'لوحة التحكم';
+
         const theme = TAB_THEMES[tabId] || TAB_THEMES.dashboard;
         const header = document.getElementById('appHeader');
         Object.values(TAB_THEMES).forEach(t => header.classList.remove(t.headerBorder));
@@ -3304,6 +3306,7 @@
         }
 
         if (tabId === 'dashboard') renderDashboard();
+        if (tabId === 'reports') runAdvancedReport();
         if (tabId === 'beneficiaries') renderBeneficiaries();
         if (tabId === 'aid') renderAidView();
         if (tabId === 'workshops') renderWorkshops();
@@ -3320,7 +3323,7 @@
 
       function updatePendingBadges() {
         const pendingCount = state.pendingRequests.filter(r => r.status === 'pending').length;
-        ['mobileMenuPendingBadge', 'screenMenuPendingBadge', 'desktopPendingBadge'].forEach(id => {
+        ['mobileMenuPendingBadge', 'desktopPendingBadge'].forEach(id => {
           const el = document.getElementById(id);
           if (!el) return;
           el.textContent = toEnDigits(String(pendingCount));
@@ -4898,7 +4901,7 @@
             showToast(`تم تعديل الورشة (${attendeeCount} مشارك)`);
           }
         }
-        if (state.role === 'admin') { const savedWs = state.workshops[state.workshops.length - 1]; if (savedWs) { syncRecordToCloud('workshops', { id: savedWs.id, title: savedWs.title, trainer: savedWs.trainer, date: savedWs.date, location: savedWs.location, donor_id: savedWs.donorId, attendee_count: savedWs.attendeeCount, attendee_ids: savedWs.attendeeIds, attendance_img: savedWs.attendanceImg, photo_img: savedWs.photoImg, photos: savedWs.photos }, 'id'); recordAuditLog(editId === 'new' ? 'إضافة' : 'تعديل', 'ندوات/ورش عمل', savedWs.id, `${editId === 'new' ? 'إضافة' : 'تعديل'} ورشة: ${title}`); } }
+        if (state.role === 'admin') { const savedWs = state.workshops[state.workshops.length - 1]; if (savedWs) { syncRecordToCloud('workshops', { id: savedWs.id, title: savedWs.title, trainer: savedWs.trainer, date: savedWs.date, location: savedWs.location, donor_id: savedWs.donorId, attendee_count: savedWs.attendeeCount, attendee_ids: savedWs.attendeeIds, attendance_img: savedWs.attendanceImg, photo_img: savedWs.photoImg, photos: savedWs.photos }, 'id'); recordAuditLog(editId === 'new' ? 'إضافة' : 'تعديل', 'التدريب', savedWs.id, `${editId === 'new' ? 'إضافة' : 'تعديل'} ورشة: ${title}`); } }
         persistAll(); closeModal('workshopModal'); renderWorkshops(); renderDonorsView(); renderDashboard(); runAdvancedReport();
       }
 
@@ -4908,7 +4911,7 @@
         openConfirmModal('حذف ورشة العمل', `هل أنت متأكد من حذف الورشة "${w ? w.title : id}"؟`, () => {
           state.workshops = state.workshops.filter(x => x.id !== id);
           deleteRecordFromCloud('workshops', 'id', id);
-          recordAuditLog('حذف', 'ندوات/ورش عمل', id, `حذف ورشة العمل: ${w ? w.title : id} (رقم: ${toEnDigits(id)})`);
+          recordAuditLog('حذف', 'التدريب', id, `حذف ورشة العمل: ${w ? w.title : id} (رقم: ${toEnDigits(id)})`);
           persistAll(); showToast('تم حذف ورشة العمل'); renderWorkshops(); renderDashboard(); runAdvancedReport();
         });
       }
@@ -6131,27 +6134,7 @@
             document.getElementById('beneficiariesTableWrapper')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             return;
           }
-          const screenDdToggle = e.target.closest('#currentScreenDropdownBtn');
-          if (screenDdToggle) {
-            e.stopPropagation();
-            const sdd = document.getElementById('currentScreenDropdownMenu');
-            const hdd = document.getElementById('headerNavDropdown');
-            if (hdd) hdd.classList.add('hidden');
-            if (sdd) {
-              const willShow = sdd.classList.contains('hidden');
-              sdd.classList.toggle('hidden', !willShow);
-              screenDdToggle.setAttribute('aria-expanded', willShow ? 'true' : 'false');
-            }
-            return;
-          }
-          if (!e.target.closest('#currentScreenDropdownMenu')) {
-            const sdd = document.getElementById('currentScreenDropdownMenu');
-            const sbtn = document.getElementById('currentScreenDropdownBtn');
-            if (sdd && !sdd.classList.contains('hidden')) {
-              sdd.classList.add('hidden');
-              if (sbtn) sbtn.setAttribute('aria-expanded', 'false');
-            }
-          }
+
           const headerToggle = e.target.closest('#headerIconBox');
           if (headerToggle) {
             e.stopPropagation();
@@ -6177,10 +6160,7 @@
             const hb = document.getElementById('headerIconBox');
             if (dd) dd.classList.add('hidden');
             if (hb) hb.setAttribute('aria-expanded', 'false');
-            const sdd = document.getElementById('currentScreenDropdownMenu');
-            const sbtn = document.getElementById('currentScreenDropdownBtn');
-            if (sdd) sdd.classList.add('hidden');
-            if (sbtn) sbtn.setAttribute('aria-expanded', 'false');
+
             switchTab(tabBtn.dataset.tab);
             return;
           }
@@ -6702,13 +6682,19 @@
           const level = document.getElementById('needySendDifficultySelect').value;
           const existing = new Set(state.needyFamilies.map(n => n.nationalId));
           let added = 0;
+          const needyPayloads = [];
           state.needyPendingSendIds.forEach(nid => {
             if (!existing.has(nid)) {
-              state.needyFamilies.push({ nationalId: nid, difficultyLevel: level, addedDate: todayISO() });
+              const entry = { nationalId: nid, difficultyLevel: level, addedDate: todayISO(), photos: [] };
+              state.needyFamilies.push(entry);
               existing.add(nid); added++;
+              needyPayloads.push({ national_id: entry.nationalId, difficulty_level: entry.difficultyLevel, added_date: entry.addedDate, photos: [] });
             } else {
               const found = state.needyFamilies.find(n => n.nationalId === nid);
-              if (found) found.difficultyLevel = level;
+              if (found) {
+                found.difficultyLevel = level;
+                needyPayloads.push({ national_id: found.nationalId, difficulty_level: found.difficultyLevel, added_date: found.addedDate || todayISO(), photos: found.photos || [] });
+              }
             }
           });
           state.selectedBeneficiaryIds.clear();
@@ -6717,6 +6703,7 @@
           renderBeneficiaries();
           renderNeedyView();
           showToast(`تم إرسال ${state.needyPendingSendIds.length} أسرة إلى شاشة الأسر المحتاجة`);
+          if (needyPayloads.length) batchUpsertToCloud('needy_families', needyPayloads, 'national_id', 'الحالات');
         });
         document.getElementById('needyViewTableBtn').addEventListener('click', () => setNeedyViewMode('table'));
         document.getElementById('needyViewCardsBtn').addEventListener('click', () => setNeedyViewMode('cards'));
@@ -7006,6 +6993,28 @@
           else { triggerDownload(new Blob([printHtml], { type: 'text/html;charset=utf-8' }), `كشف_المانحين_${todayISO()}.html`); showToast('تم تحميل ملف الطباعة لفتحه وطباعته'); }
         });
 
+        document.getElementById('printApprovalsBtn').addEventListener('click', () => {
+          const isAdminActions = !document.getElementById('approvalsAdminActionsPanel').classList.contains('hidden');
+          const listEl = document.getElementById(isAdminActions ? 'adminActionsList' : 'approvalsList');
+          if (!listEl || !listEl.children.length) { showToast('لا توجد بيانات للطباعة!', false); return; }
+          const clone = listEl.cloneNode(true);
+          clone.querySelectorAll('button').forEach(b => b.remove());
+          const title = isAdminActions ? 'تقرير حركات اليوم وتعديلات المديرين' : 'كشف طلبات الموظفين بانتظار الموافقة';
+          const printHtml = `<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><title>${title}</title><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"><style>@page{size:A4 portrait;margin:10mm;}*{font-family:'Cairo',Tahoma,Arial,sans-serif;box-sizing:border-box;font-weight:400;}body{margin:0;padding:12px;color:#1e293b;direction:rtl;background:#fff;}h1{text-align:center;font-size:17px;margin:0;}p.meta{text-align:center;font-size:11px;color:#64748b;border-bottom:1.5px solid #cbd5e1;padding-bottom:8px;margin-bottom:12px;}.num-en{font-family:'Inter','Cairo',sans-serif;direction:ltr;display:inline-block;unicode-bidi:isolate;}img{max-width:90px;max-height:90px;border-radius:8px;}</style></head><body><h1>منصة العطاء والتمكين - ${title}</h1><p class="meta">تاريخ الطباعة: <span class="num-en">${toEnDigits(todayISO())}</span></p><div>${clone.innerHTML}</div><script>window.onload=function(){setTimeout(function(){window.print();},250);};<\/script></body></html>`;
+          const win = window.open('', '_blank', 'width=1000,height=720');
+          if (win) { win.document.open(); win.document.write(printHtml); win.document.close(); win.focus(); }
+          else { triggerDownload(new Blob([printHtml], { type: 'text/html;charset=utf-8' }), `${title}_${todayISO()}.html`); showToast('تم تحميل ملف الطباعة لفتحه وطباعته'); }
+        });
+
+        document.getElementById('printAuditBtn').addEventListener('click', () => {
+          const tbody = document.getElementById('auditTableBody');
+          if (!tbody || !tbody.children.length) { showToast('لا توجد سجلات رقابة للطباعة!', false); return; }
+          const printHtml = `<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><title>سجل الرقابة</title><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"><style>@page{size:A4 landscape;margin:10mm;}*{font-family:'Cairo',Tahoma,Arial,sans-serif;box-sizing:border-box;font-weight:400;}body{margin:0;padding:10px;color:#1e293b;direction:rtl;background:#fff;}h1{text-align:center;font-size:17px;margin:0;}p.meta{text-align:center;font-size:11px;color:#64748b;border-bottom:1.5px solid #cbd5e1;padding-bottom:8px;margin-bottom:12px;}table{width:100%;table-layout:fixed;border-collapse:collapse;font-size:11px;}thead{display:table-header-group;}tr{page-break-inside:avoid;}th,td{border:1px solid #cbd5e1;padding:6px 8px;text-align:right;white-space:normal;word-wrap:break-word;vertical-align:middle;}th{font-weight:700!important;border-top:1px solid #94a3b8;border-bottom:2px solid #94a3b8;color:#0f172a;}.num-en{font-family:'Inter','Cairo',sans-serif;direction:ltr;display:inline-block;unicode-bidi:isolate;}td.num-en,th.num-en{display:table-cell!important;direction:rtl;text-align:right;}</style></head><body><h1>منصة العطاء والتمكين - سجل الرقابة وتتبّع التغييرات</h1><p class="meta">إجمالي السجلات المعروضة: <span class="num-en">${toEnDigits(String(tbody.children.length))}</span> | تاريخ الطباعة: <span class="num-en">${toEnDigits(todayISO())}</span></p><table><thead><tr><th style="width:16%">التاريخ والوقت</th><th style="width:16%">المنفذ</th><th style="width:12%">نوع الحركة</th><th style="width:14%">القسم</th><th style="width:42%">التفاصيل</th></tr></thead><tbody>${tbody.innerHTML}</tbody></table><script>window.onload=function(){setTimeout(function(){window.print();},250);};<\/script></body></html>`;
+          const win = window.open('', '_blank', 'width=1050,height=720');
+          if (win) { win.document.open(); win.document.write(printHtml); win.document.close(); win.focus(); }
+          else { triggerDownload(new Blob([printHtml], { type: 'text/html;charset=utf-8' }), `سجل_الرقابة_${todayISO()}.html`); showToast('تم تحميل ملف الطباعة لفتحه وطباعته'); }
+        });
+
         // Workshops
         document.getElementById('wsSearchInput').addEventListener('input', renderWorkshops);
         document.getElementById('wsAttachmentFilter').addEventListener('change', renderWorkshops);
@@ -7084,14 +7093,14 @@
         document.getElementById('exportWorkshopsListBtn').addEventListener('click', () => {
           const list = getFilteredWorkshops();
           if (!list.length) { showToast('لا توجد بيانات ورش عمل لتصديرها!', false); return; }
-          openExportConfirmModal('تأكيد تصدير ندوات/ورش عمل', `سيتم تصدير كشف ندوات/ورش عمل المعروض (${list.length} ورشة) بصيغة Excel (.xlsx). هل تود المتابعة؟`, () => {
+          openExportConfirmModal('تأكيد تصدير التدريب', `سيتم تصدير كشف التدريب المعروض (${list.length} ورشة) بصيغة Excel (.xlsx). هل تود المتابعة؟`, () => {
             const headers = ['التاريخ', 'اسم الورشة / النشاط', 'المدرب / الجهة', 'المكان', 'عدد الحضور'];
             const rows = list.map(w => {
               const count = Array.isArray(w.attendeeIds) ? w.attendeeIds.length : (w.attendeeCount || 0);
               return [toEnDigits(w.date || ''), w.title || '', w.trainer || '', w.location || 'قاعة الجمعية', toEnDigits(String(count))];
             });
-            downloadNativeExcel(headers, rows, `كشف_ورش_العمل_${todayISO()}`, 'ندوات/ورش عمل');
-            showToast('تم تصدير كشف ندوات/ورش عمل (.xlsx)');
+            downloadNativeExcel(headers, rows, `كشف_ورش_العمل_${todayISO()}`, 'التدريب');
+            showToast('تم تصدير كشف التدريب (.xlsx)');
           });
         });
         document.getElementById('printWorkshopsListBtn').addEventListener('click', () => {
@@ -7101,7 +7110,7 @@
             const count = Array.isArray(w.attendeeIds) ? w.attendeeIds.length : (w.attendeeCount || 0);
             return `<tr><td class="num-en text-center">${idx + 1}</td><td class="num-en">${escapeHtml(toEnDigits(w.date || '-'))}</td><td>${escapeHtml(w.title || '-')}</td><td>${escapeHtml(w.trainer || '-')}</td><td>${escapeHtml(w.location || 'قاعة الجمعية')}</td><td class="num-en text-center">${toEnDigits(String(count))}</td></tr>`;
           }).join('');
-          const printHtml = `<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><title>كشف ندوات/ورش عمل</title><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"><style>@page{size:A4 landscape;margin:10mm;}*{font-family:'Cairo',Tahoma,Arial,sans-serif;box-sizing:border-box;font-weight:400;}body{margin:0;padding:10px;color:#1e293b;direction:rtl;background:#fff;}h1{text-align:center;font-size:17px;margin:0;}p.meta{text-align:center;font-size:11px;color:#64748b;border-bottom:1.5px solid #cbd5e1;padding-bottom:8px;margin-bottom:12px;}table{width:100%;table-layout:fixed;border-collapse:collapse;font-size:11.5px;}thead{display:table-header-group;}tr{page-break-inside:avoid;}th,td{border:1px solid #cbd5e1;padding:6px 8px;text-align:right;white-space:normal;word-wrap:break-word;overflow-wrap:break-word;vertical-align:middle;}th.text-center,td.text-center{text-align:center!important;}th{font-weight:700!important;border-top:1px solid #94a3b8;border-bottom:2px solid #94a3b8;background:transparent;color:#0f172a;}th:nth-child(1),td:nth-child(1){width:5%;}th:nth-child(2),td:nth-child(2){width:12%;}th:nth-child(3),td:nth-child(3){width:31%;}th:nth-child(4),td:nth-child(4){width:21%;}th:nth-child(5),td:nth-child(5){width:19%;}th:nth-child(6),td:nth-child(6){width:12%;}.num-en{font-family:'Inter','Cairo',sans-serif;direction:ltr;display:inline-block;unicode-bidi:isolate;}td.num-en,th.num-en{display:table-cell!important;direction:rtl;text-align:right;}</style></head><body><h1>منصة العطاء والتمكين - كشف ندوات/ورش عمل والتدريب</h1><p class="meta">إجمالي السجلات: <span class="num-en">${toEnDigits(String(list.length))}</span> | تاريخ الطباعة: <span class="num-en">${toEnDigits(todayISO())}</span></p><table><thead><tr><th class="text-center">#</th><th>التاريخ</th><th>اسم الورشة / النشاط</th><th>المدرب / الجهة</th><th>المكان</th><th class="text-center">الحضور</th></tr></thead><tbody>${rowsHtml}</tbody></table><script>window.onload=function(){setTimeout(function(){window.print();},250);};<\/script></body></html>`;
+          const printHtml = `<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><title>كشف التدريب</title><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"><style>@page{size:A4 landscape;margin:10mm;}*{font-family:'Cairo',Tahoma,Arial,sans-serif;box-sizing:border-box;font-weight:400;}body{margin:0;padding:10px;color:#1e293b;direction:rtl;background:#fff;}h1{text-align:center;font-size:17px;margin:0;}p.meta{text-align:center;font-size:11px;color:#64748b;border-bottom:1.5px solid #cbd5e1;padding-bottom:8px;margin-bottom:12px;}table{width:100%;table-layout:fixed;border-collapse:collapse;font-size:11.5px;}thead{display:table-header-group;}tr{page-break-inside:avoid;}th,td{border:1px solid #cbd5e1;padding:6px 8px;text-align:right;white-space:normal;word-wrap:break-word;overflow-wrap:break-word;vertical-align:middle;}th.text-center,td.text-center{text-align:center!important;}th{font-weight:700!important;border-top:1px solid #94a3b8;border-bottom:2px solid #94a3b8;background:transparent;color:#0f172a;}th:nth-child(1),td:nth-child(1){width:5%;}th:nth-child(2),td:nth-child(2){width:12%;}th:nth-child(3),td:nth-child(3){width:31%;}th:nth-child(4),td:nth-child(4){width:21%;}th:nth-child(5),td:nth-child(5){width:19%;}th:nth-child(6),td:nth-child(6){width:12%;}.num-en{font-family:'Inter','Cairo',sans-serif;direction:ltr;display:inline-block;unicode-bidi:isolate;}td.num-en,th.num-en{display:table-cell!important;direction:rtl;text-align:right;}</style></head><body><h1>منصة العطاء والتمكين - كشف التدريب والتدريب</h1><p class="meta">إجمالي السجلات: <span class="num-en">${toEnDigits(String(list.length))}</span> | تاريخ الطباعة: <span class="num-en">${toEnDigits(todayISO())}</span></p><table><thead><tr><th class="text-center">#</th><th>التاريخ</th><th>اسم الورشة / النشاط</th><th>المدرب / الجهة</th><th>المكان</th><th class="text-center">الحضور</th></tr></thead><tbody>${rowsHtml}</tbody></table><script>window.onload=function(){setTimeout(function(){window.print();},250);};<\/script></body></html>`;
           const win = window.open('', '_blank', 'width=1050,height=720');
           if (win) { win.document.open(); win.document.write(printHtml); win.document.close(); win.focus(); showToast('تم فتح نافذة الطباعة'); }
           else { triggerDownload(new Blob([printHtml], { type: 'text/html;charset=utf-8' }), `كشف_ورش_العمل_${todayISO()}.html`); showToast('تم تحميل ملف الطباعة لفتحه وطباعته'); }
@@ -7149,16 +7158,20 @@
           } else {
             const existingIds = new Set(state.needyFamilies.map(n => n.nationalId));
             let addedCount = 0;
+            const needyPayloads = [];
             state.pickerTempSet.forEach(nid => {
               if (!existingIds.has(nid)) {
-                state.needyFamilies.push({ nationalId: nid, difficultyLevel: '', addedDate: todayISO() });
+                const entry = { nationalId: nid, difficultyLevel: '', addedDate: todayISO(), photos: [] };
+                state.needyFamilies.push(entry);
                 existingIds.add(nid);
                 addedCount++;
+                needyPayloads.push({ national_id: entry.nationalId, difficulty_level: entry.difficultyLevel, added_date: entry.addedDate, photos: [] });
               }
             });
             persistAll();
             renderNeedyView();
             showToast(`تمت إضافة ${addedCount} أسرة جديدة إلى قائمة الحالات`);
+            if (needyPayloads.length) batchUpsertToCloud('needy_families', needyPayloads, 'national_id', 'الحالات');
           }
           closeModal('namesPickerModal');
         });
