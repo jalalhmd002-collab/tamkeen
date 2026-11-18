@@ -4812,7 +4812,9 @@
         if (editId !== 'new') {
           const orig = state.aidRecords.find(a => a.id === editId);
           if (orig) {
-            state.aidRecords = state.aidRecords.filter(x => !(x.description === orig.description && x.date === orig.date && x.type === orig.type));
+const oldBatch = state.aidRecords.filter(x => x.description === orig.description && x.date === orig.date && x.type === orig.type);
+oldBatch.forEach(r => deleteRecordFromCloud('aid_records', 'id', r.id));
+state.aidRecords = state.aidRecords.filter(x => !(x.description === orig.description && x.date === orig.date && x.type === orig.type));
             selectedList.forEach((nid, i) => {
               const b = state.beneficiaries.find(x => x.nationalId === nid);
               if (!b) return;
