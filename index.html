@@ -7,7 +7,7 @@
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.47.10/dist/umd/supabase.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script async src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" onload="window.dispatchEvent(new Event('tamkeen-qr-loaded'))"></script>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root, html, body, select, input, textarea { color-scheme: light !important; }
@@ -999,25 +999,30 @@
 
     <!-- TAB: SUPABASE SYNC & BACKUP -->
     <section id="tab-sync" class="tab-content hidden space-y-4">
-      <div class="bg-white/90 backdrop-blur-sm p-4 sm:p-5 rounded-2xl border border-slate-200/80 border-t-4 border-t-violet-500 shadow-sm space-y-5">
-        <div>
-          <h2 id="backupTitleSecretTrigger" class="text-base sm:text-lg text-slate-900 select-none cursor-default">النسخ الاحتياطي والمزامنة السحابية</h2>
-          <p class="text-xs text-slate-500">نسخ احتياطي كامل ومزامنة مباشرة وآمنة مع قاعدة Supabase.</p>
-        </div>
-        <div class="admin-only grid grid-cols-1 md:grid-cols-2 gap-3.5">
-          <div class="p-4 rounded-xl border border-violet-200 bg-violet-50/40 space-y-3">
-            <div><h4 class="text-sm text-slate-900">تصدير النسخة الاحتياطية الكاملة (.json)</h4><p class="text-[11px] text-slate-500">حفظ نسخة من البيانات المحلية المتزامنة، بما فيها السجلات والطلبات والإعدادات.</p></div>
-            <button type="button" id="exportBackupBtn" class="app-btn w-full border border-violet-500 text-violet-700">تنزيل نسخة احتياطية كاملة</button>
+      <div class="bg-white/95 backdrop-blur-sm p-4 sm:p-6 rounded-2xl border border-slate-200/80 border-t-4 border-t-violet-500 shadow-sm space-y-5 sm:space-y-6">
+        <div class="flex items-start gap-3">
+          <div class="w-10 h-10 rounded-xl bg-violet-50 border border-violet-100 text-violet-700 flex items-center justify-center shrink-0" aria-hidden="true">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 16V4m0 0L7 9m5-5l5 5M5 14v4a2 2 0 002 2h10a2 2 0 002-2v-4"/></svg>
           </div>
-          <div class="p-4 rounded-xl border border-emerald-200 bg-emerald-50/40 space-y-3">
-            <div><h4 class="text-sm text-slate-900">استيراد ودمج نسخة احتياطية (.json)</h4><p class="text-[11px] text-slate-500">دمج السجلات المستوردة محلياً ثم رفع التغييرات إلى قاعدة Supabase.</p></div>
+          <div>
+            <h2 id="backupTitleSecretTrigger" class="text-base sm:text-lg font-bold text-slate-900 select-none cursor-default">النسخ الاحتياطي والمزامنة السحابية</h2>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1">نسخة احتياطية كاملة ومزامنة مباشرة وآمنة مع قاعدة Supabase.</p>
+          </div>
+        </div>
+        <div class="admin-only grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+          <div class="min-h-[170px] p-4 sm:p-5 rounded-2xl border border-violet-200 bg-gradient-to-br from-violet-50/80 to-white flex flex-col justify-between gap-5">
+            <div><h4 class="text-sm font-bold text-slate-900">تصدير النسخة الاحتياطية الكاملة (.json)</h4><p class="text-[11px] leading-5 text-slate-500 mt-1">حفظ نسخة من البيانات المحلية المتزامنة، بما فيها السجلات والطلبات والإعدادات.</p></div>
+            <button type="button" id="exportBackupBtn" class="app-btn w-full min-h-[42px] border border-violet-500 bg-white text-violet-700 hover:bg-violet-50">تنزيل نسخة احتياطية كاملة</button>
+          </div>
+          <div class="min-h-[170px] p-4 sm:p-5 rounded-2xl border border-emerald-200 bg-gradient-to-br from-emerald-50/80 to-white flex flex-col justify-between gap-5">
+            <div><h4 class="text-sm font-bold text-slate-900">استيراد ودمج نسخة احتياطية (.json)</h4><p class="text-[11px] leading-5 text-slate-500 mt-1">دمج السجلات المستوردة محلياً ثم رفع التغييرات إلى قاعدة Supabase.</p></div>
             <input type="file" id="importJsonFile" accept=".json" class="hidden">
-            <button type="button" id="importBackupBtn" class="app-btn w-full border border-emerald-500 text-emerald-700">اختيار نسخة واستيرادها</button>
+            <button type="button" id="importBackupBtn" class="app-btn w-full min-h-[42px] border border-emerald-500 bg-white text-emerald-700 hover:bg-emerald-50">اختيار نسخة واستيرادها</button>
           </div>
         </div>
-        <div class="border-t border-slate-200 pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-xl border border-slate-200 bg-slate-50/80 px-3.5 sm:px-4 py-3">
           <p id="syncPanelInfoText" class="text-xs text-slate-600" aria-live="polite">مزامنة Supabase: جاري الاتصال</p>
-          <button type="button" id="manualCloudSyncBtn" class="app-btn border border-sky-500 text-sky-700">مزامنة الآن</button>
+          <button type="button" id="manualCloudSyncBtn" class="app-btn min-h-[40px] border border-sky-500 bg-white text-sky-700 hover:bg-sky-50">مزامنة الآن</button>
         </div>
       </div>
     </section>
@@ -3069,6 +3074,21 @@
         }
         await saveStateToIndexedDB();
         cloudStateBaseline = cloudStateRows();
+        if (state.currentUser && onlyTables.includes('app_users')) {
+          const latestUser = state.usersList.find(user => user.id === state.currentUser.id);
+          if (!latestUser || latestUser.isActive === false) {
+            await completeUserLogin(getDefaultEmployeeUser());
+          } else {
+            state.currentUser = latestUser;
+            state.role = latestUser.role === 'admin' ? 'admin' : 'employee';
+            await idbSet('auth_session', 'current_user', latestUser);
+            updateRoleUI();
+          }
+        }
+        if (onlyTables.includes('app_settings') && !document.getElementById('welcomeModal')?.classList.contains('hidden')) {
+          const msgEl = document.getElementById('welcomeMessageText');
+          if (msgEl) msgEl.textContent = state.customLookups?.welcomeMessage || WELCOME_CONFIG.message;
+        }
         refreshAllViews();
         await refreshCloudStatus();
         return true;
@@ -3121,38 +3141,45 @@
 
       const WELCOME_CONFIG = {
         message: 'مرحباً بكم في منصة التمكين المجتمعي لإدارة المساعدات والتدريب والحالات الميدانية.',
-        siteUrl: 'https://jalalhmd002-collab.github.io/khima/'
+        siteUrl: 'https://jalalhmd002-collab.github.io/tamkeen/'
       };
 
       let welcomeAutoCloseTimer = null;
 
+      function renderWelcomeQr() {
+        const qrEl = document.getElementById('welcomeQrContainer');
+        if (!qrEl) return;
+        qrEl.innerHTML = '';
+        if (typeof window.QRCode === 'undefined') {
+          qrEl.innerHTML = '<span class="text-xs text-slate-500">جارٍ تجهيز الباركود...</span>';
+          return;
+        }
+        try {
+          new window.QRCode(qrEl, {
+            text: WELCOME_CONFIG.siteUrl,
+            width: 144,
+            height: 144,
+            colorDark: '#0f172a',
+            colorLight: '#ffffff',
+            correctLevel: window.QRCode.CorrectLevel.M
+          });
+        } catch (error) {
+          qrEl.innerHTML = '<span class="text-xs text-slate-500">تعذر توليد الباركود</span>';
+        }
+      }
+
+      window.addEventListener('tamkeen-qr-loaded', () => {
+        if (!document.getElementById('welcomeModal')?.classList.contains('hidden')) renderWelcomeQr();
+      });
+
       function openWelcomeModal() {
         if (welcomeAutoCloseTimer) { clearTimeout(welcomeAutoCloseTimer); welcomeAutoCloseTimer = null; }
         const msgEl = document.getElementById('welcomeMessageText');
-        const qrEl = document.getElementById('welcomeQrContainer');
         const urlEl = document.getElementById('welcomeSiteUrlLink');
         if (msgEl) msgEl.textContent = (state.customLookups && state.customLookups.welcomeMessage) ? state.customLookups.welcomeMessage : WELCOME_CONFIG.message;
         const targetUrl = WELCOME_CONFIG.siteUrl || window.location.href;
         if (urlEl) { urlEl.textContent = targetUrl; }
-        if (qrEl) {
-          qrEl.innerHTML = '';
-          if (typeof window.QRCode !== 'undefined') {
-            try {
-              new window.QRCode(qrEl, {
-                text: targetUrl,
-                width: 144,
-                height: 144,
-                colorDark: '#0f172a',
-                colorLight: '#ffffff',
-                correctLevel: window.QRCode.CorrectLevel.M
-              });
-            } catch (e) {
-              qrEl.innerHTML = '<span class="text-xs text-slate-500">تعذر توليد الباركود</span>';
-            }
-          } else {
-            qrEl.innerHTML = '<span class="text-xs text-slate-500">الباركود متاح عند توفر الاتصال</span>';
-          }
-        }
+        renderWelcomeQr();
         openModal('welcomeModal');
         welcomeAutoCloseTimer = setTimeout(() => {
           welcomeAutoCloseTimer = null;
@@ -7704,19 +7731,18 @@
 
 
         updateSyncIndicatorUI();
-        await initializeCloudSync();
-
         const savedSession = await idbGet('auth_session', 'current_user');
+        let startupUser = getDefaultEmployeeUser();
         if (savedSession && savedSession.id && ['admin', 'employee'].includes(savedSession.role)) {
           const latestUser = state.usersList.find(u => u.id === savedSession.id);
           if (latestUser ? latestUser.isActive !== false : savedSession.isActive !== false) {
-            await completeUserLogin(latestUser || savedSession);
-            openWelcomeModal();
-            return;
+            startupUser = latestUser || savedSession;
           }
         }
-        await completeUserLogin(getDefaultEmployeeUser());
         openWelcomeModal();
+        await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+        await completeUserLogin(startupUser);
+        requestAnimationFrame(() => { initializeCloudSync().catch(error => console.warn('Background cloud initialization failed:', error)); });
       });
     })();
   </script>
