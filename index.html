@@ -55,6 +55,11 @@
       border-color: var(--qatar-maroon);
       box-shadow: 0 0 0 2px rgba(138, 21, 56, 0.14);
     }
+    #backupCardsGrid { grid-template-columns: minmax(0, 1fr); }
+    #backupCardsGrid > .backup-action-card { grid-column: auto !important; width: 100%; min-width: 0; }
+    @media (min-width: 640px) {
+      #backupCardsGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
     .app-input[readonly] { background-color: #e2e8f0; color: #475569; cursor: not-allowed; }
     .app-label { display: block; font-weight: 400; color: #334155; font-size: 0.75rem; margin-bottom: 0.35rem; }
     .app-btn {
@@ -67,11 +72,6 @@
       min-height: 32px; padding: 0.35rem 0.75rem; border-radius: 0.625rem; font-size: 0.75rem; font-weight: 400;
       display: inline-flex; align-items: center; justify-content: center; gap: 0.25rem;
       transition: all 0.15s ease-in-out; white-space: nowrap; cursor: pointer;
-    }
-
-    @media (min-width: 768px) {
-      #tab-sync .admin-only.grid > div:nth-child(1), #tab-sync .admin-only.grid > div:nth-child(4) { grid-column: 2; }
-      #tab-sync .admin-only.grid > div:nth-child(2), #tab-sync .admin-only.grid > div:nth-child(3) { grid-column: 1; }
     }
 
     @media print {
@@ -1011,12 +1011,12 @@
             <p class="text-xs sm:text-sm text-slate-500 mt-1">نسخة احتياطية كاملة ومزامنة مباشرة وآمنة مع قاعدة Supabase.</p>
           </div>
         </div>
-        <div class="admin-only grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
-          <div class="min-h-[170px] p-4 sm:p-5 rounded-2xl border border-rose-200 bg-gradient-to-br from-rose-50/80 to-white flex flex-col justify-between gap-5">
+        <div id="backupCardsGrid" class="admin-only grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 items-stretch">
+          <div class="backup-action-card min-h-[180px] h-full p-4 sm:p-5 rounded-2xl border border-rose-200 bg-gradient-to-br from-rose-50/80 to-white flex flex-col justify-between gap-5">
             <div><h4 class="text-sm font-bold text-slate-900">تصدير النسخة الاحتياطية الكاملة (.json)</h4><p class="text-[11px] leading-5 text-slate-500 mt-1">حفظ نسخة من البيانات المحلية المتزامنة، بما فيها السجلات والطلبات والإعدادات.</p></div>
             <button type="button" id="exportBackupBtn" class="app-btn w-full min-h-[42px] border border-rose-800 bg-white text-rose-900 hover:bg-rose-50">تنزيل نسخة احتياطية كاملة</button>
           </div>
-          <div class="min-h-[170px] p-4 sm:p-5 rounded-2xl border border-rose-200 bg-gradient-to-br from-white to-rose-50/70 flex flex-col justify-between gap-5">
+          <div class="backup-action-card min-h-[180px] h-full p-4 sm:p-5 rounded-2xl border border-rose-200 bg-gradient-to-br from-white to-rose-50/70 flex flex-col justify-between gap-5">
             <div><h4 class="text-sm font-bold text-slate-900">استيراد ودمج نسخة احتياطية (.json)</h4><p class="text-[11px] leading-5 text-slate-500 mt-1">دمج السجلات المستوردة محلياً ثم رفع التغييرات إلى قاعدة Supabase.</p></div>
             <input type="file" id="importJsonFile" accept=".json" class="hidden">
             <button type="button" id="importBackupBtn" class="app-btn w-full min-h-[42px] border border-rose-300 bg-white text-rose-900 hover:bg-rose-50">اختيار نسخة واستيرادها</button>
